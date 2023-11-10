@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:widgets_app/menu/menu_items.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+
+  /// In Dart, the `static` keyword is used to define a member (variable or method) that belongs to the
+  /// class itself, rather than to an instance of the class.
+  static const String name = "home";
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +15,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Home"),
       ),
-      body: _HomeView(),
+      body: const _HomeView(),
     );
   }
 }
@@ -58,7 +63,7 @@ class _CustomListTile extends StatelessWidget {
         // Navigator.pushNamed(context, menuItem.link );
 
         // context.pushNamed( CardsScreen.name );
-        // context.push(menuItem.link);
+        context.push(menuItem.link);
       },
     );
   }

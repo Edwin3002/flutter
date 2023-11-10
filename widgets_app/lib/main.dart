@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:widgets_app/config/app_theme.dart';
+import 'package:widgets_app/routes/routes.dart';
 import 'package:widgets_app/screens/home/home_screen.dart';
 
 void main() {
@@ -31,29 +32,21 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme(selectdColor: randomColor).getTheme(),
-        home: HomeScreen()
-        // Scaffold(
-        //   body: Center(
-        //       child: Column(
-        //     // mainAxisAlignment: MainAxisAlignment.center,
-        //     children: [
-        //       FilledButton(
-        //         onPressed: () {
-        //           setState(() {
-        //             randomColor = Random().nextInt(8);
-        //           });
-        //           // randomText == "Hola" ? randomText = "Bye" : "Hola";
-        //         },
-        //         child: const Text('Press'),
-        //       ),
-        //       Text("${randomColor % 2 == 0 ? "Par" : "Impar"} = $randomColor"),
-        //       HomeScreen()
-        //     ],
-        //   )),
-        // )
-        );
+    return MaterialApp.router(
+      routerConfig: appRoutes,
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme(selectdColor: randomColor).getTheme(),
+      // home: const HomeScreen(),
+      // routes: <String, WidgetBuilder>{
+      // routes.map((e) => '/home': (BuildContext context) => const HomeScreen() // no funciono
+      // '/home': (BuildContext context) => const HomeScreen(),
+      // '/cards': (BuildContext context) => const CardScreen(),
+      // '/btns': (BuildContext context) => const ButtonsScreen(),
+      // },
+    );
   }
 }
+
+List routes = [
+  {"linkName": "home", Widget: const HomeScreen()}
+];
