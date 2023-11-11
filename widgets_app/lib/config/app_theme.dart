@@ -13,11 +13,21 @@ const colorList = <Color>[
 ];
 
 class AppTheme {
-  final int selectdColor;
-  AppTheme({this.selectdColor = 0})
-      : assert(selectdColor >= 0, "select color must be greater than 0"),
-        assert(selectdColor < colorList.length, "select color must be less or equal than ${colorList.length - 1}");
+  final int selectedColor;
+  final bool isDarkMode;
+  AppTheme({this.selectedColor = 0, this.isDarkMode = false})
+      : assert(selectedColor >= 0, "select color must be greater than 0"),
+        assert(selectedColor < colorList.length,
+            "select color must be less or equal than ${colorList.length - 1}");
+            
+  ThemeData getTheme() => ThemeData(
+        useMaterial3: true,
+        brightness: isDarkMode ? Brightness.dark : Brightness.light,
+        colorSchemeSeed: colorList[selectedColor],
+      );
 
-  ThemeData getTheme() =>
-      ThemeData(useMaterial3: true, colorSchemeSeed: colorList[selectdColor]);
+  AppTheme copyWith({int? selectedColor, bool? isDarkMode}) => AppTheme(
+        selectedColor: selectedColor ?? this.selectedColor,
+        isDarkMode: isDarkMode ?? this.isDarkMode,
+      );
 }

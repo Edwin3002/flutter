@@ -54,4 +54,14 @@ const appMenuItems = <MenuItem>[
       subTitle: 'Listas infinitas y pull to refresh',
       link: '/infinite',
       icon: Icons.list_alt_rounded),
+  MenuItem(
+      title: 'Counter',
+      subTitle: 'Counter con gestor de state',
+      link: '/counter',
+      icon: Icons.calculate),
+  MenuItem(
+      title: 'Theme',
+      subTitle: 'Cambio de temas',
+      link: '/theme',
+      icon: Icons.palette),
 ];
