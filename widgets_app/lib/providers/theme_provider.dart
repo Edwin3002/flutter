@@ -1,7 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:widgets_app/config/app_theme.dart';
 
-final colorListProvider = Provider((ref) => colorList);
+final colorListProvider = StateProvider((ref) => <Color>[
+      Colors.blue,
+      Colors.teal,
+      Colors.green,
+      Colors.red,
+      Colors.purple,
+      Colors.deepPurple,
+      Colors.orange,
+      Colors.pink,
+      Color.fromRGBO(55, 112, 123, 1),
+    ]);
 
 final isDarkModeProvider = StateProvider((ref) => true);
 

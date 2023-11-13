@@ -26,15 +26,13 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       key: homeKey,
       appBar: AppBar(
-        title: Row(
-          children: [
-            const Text("Home"),
-            IconButton(
-                onPressed: changeTheme,
-                icon: Icon(darkMode ? Icons.light_mode : Icons.dark_mode,
-                    color: Colors.yellow))
-          ],
-        ),
+        title: const Text("Home"),
+        actions: [
+          IconButton(
+              onPressed: changeTheme,
+              icon: Icon(darkMode ? Icons.light_mode : Icons.dark_mode,
+                  color: Colors.yellow))
+        ],
       ),
       drawer: Drawer(
         child: DrawerMain(homeKey: homeKey),
@@ -71,12 +69,13 @@ class _CustomListTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final int counterInt = ref.watch(counterProvider);
+    final bool isDarkMode = ref.watch(isDarkModeProvider);
     final colors = Theme.of(context).colorScheme;
 
     return ListTile(
       leading: Icon(menuItem.icon, color: colors.primary),
       trailing: Icon(Icons.arrow_forward_ios_rounded, color: colors.primary),
-      title: Text("${menuItem.title} ${index == 8 ? "= $counterInt" : ""}"),
+      title: Text("${menuItem.title} ${index == 8 ? "= $counterInt" : ""} ${index == 9 ? !isDarkMode ? "-> dark" : "-> light" : ""}"),
       subtitle: Text(menuItem.subTitle),
       onTap: () {
         // Navigator.of(context).push(

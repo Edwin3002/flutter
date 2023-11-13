@@ -9,7 +9,7 @@ const colorList = <Color>[
   Colors.deepPurple,
   Colors.orange,
   Colors.pink,
-  Colors.pinkAccent,
+  Color.fromRGBO(55, 112, 123, 1),
 ];
 
 class AppTheme {
