@@ -1,9 +1,12 @@
 import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:form_app/config/app_theme.dart';
+import 'package:form_app/routes/app_router.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MainApp()));
+  // runApp(const ProviderScope(child: MainApp()));
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -11,14 +14,20 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Center(
-            child: Row(children: [
-          Text('Form app'),
-          Text(Platform.isAndroid ? "android" : "ios"),
-        ])),
-      ),
+    return MaterialApp.router(
+    routerConfig: appRouter,
+    debugShowCheckedModeBanner: false,
+    theme: Apptheme().getTheme(),
+    
+      // home: Scaffold( el home no es necesario por lo q esta implementa lo de rutas
+      //   body: Center(
+      //       child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.center,
+      //       children: [
+      //     Text('Form app'),
+      //     Text(Platform.isAndroid ? "android" : "ios"),
+      //   ])),
+      // ),
     );
   }
 }

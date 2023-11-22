@@ -1,5 +1,11 @@
-class Apptheme{
+import 'package:flutter/material.dart';
 
-ThemeData
-
+class Apptheme {
+  ThemeData getTheme() {
+    const seedColor = Colors.deepPurple;
+    return ThemeData(
+        useMaterial3: true,
+        colorSchemeSeed: seedColor,
+        listTileTheme: const ListTileThemeData(iconColor: seedColor));
+  }
 }
