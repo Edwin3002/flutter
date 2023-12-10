@@ -14,11 +14,17 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: ListView(children: [
         ListTile(
-          title: Text("Cubits"),
-          subtitle: Text("Gestor de estado simple"),
-          trailing: Icon(Icons.arrow_forward_ios_outlined),
+          title: const Text("Cubits"),
+          subtitle: const Text("Gestor de estado simple"),
+          trailing: const Icon(Icons.arrow_forward_ios_outlined),
           onTap: () => context.push("/cubits"),
-        )
+        ),
+        ListTile(
+          title: const Text("Register"),
+          subtitle: const Text("Formularios"),
+          trailing: const Icon(Icons.arrow_forward_ios_outlined),
+          onTap: () => context.push("/register"),
+        ),
       ]),
     );
   }
