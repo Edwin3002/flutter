@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:form_app/blocs/register_cubit/register_cubit.dart';
 import "package:form_app/widgets/inputs/inputs.dart";
 
 class RegisterScreen extends StatelessWidget {
@@ -10,7 +12,10 @@ class RegisterScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Register"),
       ),
-      body: const _RegisterView(),
+      body: BlocProvider(
+        create: (context) => RegisterCubit(),
+        child: const _RegisterView(),
+      ),
     );
   }
 }
@@ -45,20 +50,22 @@ class _RegisterForm extends StatefulWidget {
   _RegisterForm();
 
   @override
-  State<_RegisterForm> createState() => _RegisterFormState();
+  State<_RegisterForm> createState() => _RegisterFormStateasd();
 }
 
-class _RegisterFormState extends State<_RegisterForm> {
+class _RegisterFormStateasd extends State<_RegisterForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  Map initialValues = {
-    "name": "",
-    "nacionality": "",
-    "mail": "",
-    "password": ""
-  };
+  // Map initialValues = {
+  //   "name": "",
+  //   "nacionality": "",
+  //   "mail": "",
+  //   "password": ""
+  // };
+
   @override
   Widget build(BuildContext context) {
+    final registerCubit = context.watch<RegisterCubit>();
     return Column(
       children: [
         Form(
@@ -66,7 +73,10 @@ class _RegisterFormState extends State<_RegisterForm> {
             child: Column(children: [
               CustomTextFormField(
                 label: "Full name",
-                onChanged: (value) => initialValues["name"] = value,
+                onChanged: (value) {
+                  registerCubit.nameChanged(value);
+                  _formKey.currentState?.validate();
+                },
                 validator: (value) {
                   if (value == null || value.isEmpty) return 'Campo requerido';
                   if (value.trim().isEmpty) return 'Campo requerido';
@@ -76,7 +86,10 @@ class _RegisterFormState extends State<_RegisterForm> {
               ),
               CustomTextFormField(
                 label: 'Correo electrónico',
-                onChanged: (value) => initialValues["mail"] = value,
+                onChanged: (value) {
+                  registerCubit.emailChanged(value);
+                  _formKey.currentState?.validate();
+                },
                 validator: (value) {
                   if (value == null || value.isEmpty) return 'Campo requerido';
                   if (value.trim().isEmpty) return 'Campo requerido';
@@ -95,7 +108,10 @@ class _RegisterFormState extends State<_RegisterForm> {
               CustomTextFormField(
                 label: 'Contraseña',
                 obscureText: true,
-                onChanged: (value) => initialValues["password"] = value,
+                onChanged: (value) {
+                  _formKey.currentState?.validate();
+                  registerCubit.passwordChanged(value);
+                },
                 validator: (value) {
                   if (value == null || value.isEmpty) return 'Campo requerido';
                   if (value.trim().isEmpty) return 'Campo requerido';
@@ -104,23 +120,28 @@ class _RegisterFormState extends State<_RegisterForm> {
                 },
               ),
 
-              CustomTextFormField(
-                label: "Nacionality",
-                onChanged: (value) => initialValues["nacionality"] = value,
-                validator: (value) {
-                  if (value == null || value.isEmpty) return 'Campo requerido';
-                  if (value.trim().isEmpty) return 'Campo requerido';
-                   return null;
-                },
-              ),
+              /// `CustomTextFormField` is a custom widget that extends the `TextFormField` widget
+              /// provided by Flutter. It is used to create a text input field with custom styling and
+              /// validation. It takes parameters such as `label`, `onChanged`, and `validator` to
+              /// customize its behavior and appearance.
+              // CustomTextFormField(
+              //   label: "Nacionality",
+              //   onChanged: (value) => initialValues["nacionality"] = value,
+              //   validator: (value) {
+              //     if (value == null || value.isEmpty) return 'Campo requerido';
+              //     if (value.trim().isEmpty) return 'Campo requerido';
+              //     return null;
+              //   },
+              // ),
               // for (CustomTextFormField customInput in listInputs) customInput,
-              ElevatedButton(
+              ElevatedButton.icon(
                   onPressed: () {
                     final isValid = _formKey.currentState!.validate();
                     if (!isValid) return;
-                    print(initialValues);
+                    registerCubit.onSumbit();
                   },
-                  child: const Text("Send"))
+                  icon: const Icon(Icons.send),
+                  label: const Text("Send")),
             ])),
       ],
     );
