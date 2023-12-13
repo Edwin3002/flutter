@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "446647972433",
+    "project_id": "notifica-62fec",
+    "storage_bucket": "notifica-62fec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446647972433:android:bf0e49d0f753e9f9807e70",
+        "android_client_info": {
+          "package_name": "com.edwin.notify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9Srg41TzJW9njt9EYumZsp_aoCIrpeGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446647972433:android:dc684ebbb221b4a1807e70",
+        "android_client_info": {
+          "package_name": "com.edwinvargas.notifications_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9Srg41TzJW9njt9EYumZsp_aoCIrpeGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
