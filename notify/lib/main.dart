@@ -4,8 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notify/config/routes/router.dart';
 import 'package:notify/config/theme/app_theme.dart';
 import 'package:notify/presentation/blocs/notifications/notifications_bloc.dart';
-
+import 'package:log_print/log_print.dart';
+import 'package:log_print/log_print_config.dart';
 void main() async {
+ setLogPrintConfig(LogPrintConfig(colorful: true, debugMode: true));
+ LogPrint("This is Info Message", type: LogPrintType.info);
    WidgetsFlutterBinding.ensureInitialized();
    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler );
   await NotificationsBloc.initFirebaseNotifications();
@@ -21,6 +24,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: Apptheme().getTheme(),
