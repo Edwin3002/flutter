@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:notify/domain/entities/push_message.dart';
 import 'package:notify/presentation/blocs/notifications/notifications_bloc.dart';
 
@@ -48,7 +49,8 @@ class _HomeView extends StatelessWidget {
             leading: notify.imageUrl != null
                 ? Image.network(notify.imageUrl!)
                 : null,
-            // tileColor: colors[index % 2 == 0 ? 0 : 1],
+                onTap: () => context.push("/msg-details/${notify.messageId}"),
+            tileColor: colors[index % 2 == 0 ? 0 : 1],
           );
         });
   }
